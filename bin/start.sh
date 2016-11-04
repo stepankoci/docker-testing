@@ -17,12 +17,19 @@ ln \
     /var/www/html \
     ~developer/current
 
-# Start Postgres and init user
-service postgresql start
-sudo -u postgres sh -c 'createuser -d developer'
-sudo -u postgres psql -c "ALTER USER developer PASSWORD 'developer';"
+# Bin
+sudo -u developer sh -c 'mkdir ~/bin'
 
-# Start Apache
+# Composer
+sudo -u developer sh -c 'wget https://getcomposer.org/installer -O composer-installer.php'
+sudo -u developer sh -c 'php composer-installer.php --install-dir ~/bin --filename composer'
+sudo -u developer sh -c 'rm composer-installer.php'
+
+# Node version manager & Node
+sudo -i -u developer /node.sh
+
+# Start services
+service postgresql start
 service apache2 start
 
 # Container command

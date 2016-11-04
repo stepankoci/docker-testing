@@ -48,13 +48,6 @@ RUN apt-get install -y \
 # Cleanup
 RUN apt-get clean
 
-# Composer
-RUN wget https://getcomposer.org/installer -O composer-installer.php && php composer-installer.php && rm composer-installer.php
-
-# Node version manager & Node
-RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-ENV NVM_DIR=$HOME/.nvm
-RUN . $NVM_DIR/nvm.sh && nvm install stable && nvm use stable
 
 # ========== SETUP ==========
 
@@ -68,6 +61,10 @@ RUN sed -i 's/^export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=developer/
 RUN a2enmod rewrite
 ENV TERM xterm
 
+# Postgres user
+RUN service postgresql start && \
+    sudo -u postgres sh -c 'createuser -d developer' && \
+    sudo -u postgres psql -c "ALTER USER developer PASSWORD 'developer';"
 
 EXPOSE 80
 EXPOSE 443
@@ -75,9 +72,11 @@ EXPOSE 443
 WORKDIR /var/www/html
 
 COPY ./bin/start.sh /start.sh
+COPY ./bin/node.sh /node.sh
 COPY ./config/php.ini /etc/php5/apache2/conf.d/90-user.ini
 COPY ./config/php.ini /etc/php5/cli/conf.d/90-user.ini
 COPY ./config/apache-virtual.conf /etc/apache2/sites-enabled/000-default.conf
+RUN chmod a+rwx /node.sh
 
 # Start
 CMD ["/start.sh"]
