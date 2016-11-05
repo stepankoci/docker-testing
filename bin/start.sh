@@ -21,12 +21,12 @@ ln \
 sudo -u developer sh -c 'mkdir ~/bin'
 
 # Composer
-sudo -u developer sh -c 'wget https://getcomposer.org/installer -O composer-installer.php'
-sudo -u developer sh -c 'php composer-installer.php --install-dir ~/bin --filename composer'
-sudo -u developer sh -c 'rm composer-installer.php'
+sudo -i -u developer sh -c 'wget https://getcomposer.org/installer -O composer-installer.php'
+sudo -i -u developer sh -c 'php composer-installer.php --install-dir ~/bin --filename composer'
+sudo -i -u developer sh -c 'rm composer-installer.php'
 
 # Node version manager & Node
-sudo -i -u developer /node.sh
+sudo -i -u developer sh -c /node.sh
 
 # Start services
 service postgresql start
