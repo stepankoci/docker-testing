@@ -20,4 +20,4 @@ EXPOSE 443
 
 WORKDIR /var/www/html
 
-CMD /resources/base/start.sh
+CMD /resources/base/container-cmd.sh
