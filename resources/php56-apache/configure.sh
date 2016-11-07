@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # User
-RUN sed -i 's/^export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=developer/' /etc/apache2/envvars
+sed -i 's/^export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=developer/' /etc/apache2/envvars
 
 # Enable mod rewrite
-RUN a2enmod rewrite
+a2enmod rewrite
 
 # Apache virtual
 cp /resources/php56-apache/apache-virtual.conf /etc/apache2/sites-enabled/000-default.conf

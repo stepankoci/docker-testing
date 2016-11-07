@@ -15,6 +15,8 @@ RUN sh /resources/php56-apache/configure.sh
 RUN sh /resources/postgres94/install.sh
 RUN sh /resources/postgres94/configure.sh
 
+RUN sh /resources/node/install.sh
+
 EXPOSE 80
 EXPOSE 443
 

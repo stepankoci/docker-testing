@@ -1,15 +1,7 @@
 #!/usr/bin/env bash
 
-# Download NVM
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 
-# Define nvm dir
-export NVM_DIR=$HOME/.nvm
+sudo apt-get install -y nodejs
 
-# Run nvm
-. ~/.nvm/nvm.sh
-
-# Install and set and freeze node/npm versions
-nvm install stable
-nvm use stable
-echo "stable" > $HOME/.nvmrc
+apt-get clean
