@@ -20,6 +20,16 @@ ln \
 # Bin
 sudo -u developer sh -c 'mkdir ~/bin'
 
+# SSH
+sudo -u developer sh -c 'mkdir ~/.ssh && touch ~/.ssh/known_hosts'
+sudo -u developer sh -c 'ssh-keyscan -t rsa bitbucket.org > ~/.ssh/known_hosts'
+if [ -z "$SSH_KEY" ]
+then
+    echo "Attention: Env var SSH_KEY is not set!"
+else
+    sudo -E -u developer sh -c '(umask 077; echo $SSH_KEY | base64 --decode > /home/developer/.ssh/id_rsa)'
+fi
+
 sh /resources/php56-apache/start.sh
 sh /resources/php56-apache/install-composer.sh developer
 sh /resources/postgres94/start.sh
