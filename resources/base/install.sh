@@ -21,6 +21,7 @@ apt-get install -y \
         unzip \
         locales \
         cron \
+        mysql-client \
         mc
 
 apt-get clean
