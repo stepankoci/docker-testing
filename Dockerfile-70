@@ -1,0 +1,25 @@
+FROM debian:stable
+MAINTAINER Stepan Koci <stepan.koci@gmail.com>
+
+ENV HOME /root
+ENV TERM xterm
+
+COPY resources /resources
+
+RUN sh /resources/base/install.sh
+RUN sh /resources/base/configure.sh
+
+RUN sh /resources/php70-apache/install.sh
+RUN sh /resources/php70-apache/configure.sh
+
+RUN sh /resources/postgres94/install.sh
+RUN sh /resources/postgres94/configure.sh
+
+RUN sh /resources/node/install.sh
+
+EXPOSE 80
+EXPOSE 443
+
+WORKDIR /var/www/html
+
+CMD /resources/base/container-cmd.sh

@@ -1,3 +1,3 @@
-Imatic base image
-=================
+Testing image for Bitbucket Pipelines
+=====================================
 
