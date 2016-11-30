@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cat /resources/base/sources.list > /etc/apt/sources.list
+cat /resources/shared/base/sources.list > /etc/apt/sources.list
 
 apt-get update -y
 

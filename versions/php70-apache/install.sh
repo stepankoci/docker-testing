@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cat /resources/php70-apache/sources.list >> /etc/apt/sources.list
+cat /resources/sources.list >> /etc/apt/sources.list
 
 apt-get update -y
 

@@ -1,2 +1,3 @@
-Apache + PHP 5.6
+Apache + PHP 7.0
 ================
+
